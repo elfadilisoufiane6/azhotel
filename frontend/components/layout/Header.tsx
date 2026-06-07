@@ -180,7 +180,7 @@ export function Header() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "flex items-baseline gap-6 py-7 transition-colors group",
+                    "flex items-baseline gap-5 py-5 transition-colors group",
                     item.active ? "text-brand-500" : "text-ink hover:text-brand-500",
                   )}
                 >
@@ -193,14 +193,14 @@ export function Header() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span
-                    className="font-display text-[2.5rem] sm:text-5xl leading-[1.05]"
-                    style={{ fontWeight: 400, letterSpacing: "-0.01em" }}
+                    className="font-display text-2xl sm:text-3xl leading-[1.1]"
+                    style={{ fontWeight: 500, letterSpacing: "-0.005em" }}
                   >
                     {item.label}
                   </span>
                   {item.active && (
                     <span
-                      className="ml-auto mt-3 size-1.5 rounded-full bg-brand-500 shrink-0"
+                      className="ml-auto mt-2 size-1.5 rounded-full bg-brand-500 shrink-0"
                       aria-hidden
                     />
                   )}

@@ -1,0 +1,17 @@
+# Repo-root Dockerfile (azhotel) only needs the frontend/ folder.
+# Keep the build context small.
+
+**/node_modules
+**/.next
+**/out
+**/dist
+**/build
+**/.git
+**/.env
+**/.env.*
+!**/.env.example
+
+# Whole subprojects not used by the frontend build
+backend
+admin-dashboard
+docker-compose.yml

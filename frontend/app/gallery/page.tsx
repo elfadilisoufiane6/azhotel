@@ -37,7 +37,7 @@ export default function GalleryPage() {
           fill priority
           fetchPriority="high"
           quality={80}
-          className="object-cover animate-ken-burns"
+          className="object-cover md:animate-ken-burns"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-900/85 via-brand-900/30 to-brand-900/50" />
         <div className="absolute inset-x-0 bottom-0 container pb-10 pt-24 md:pb-14 md:pt-32 text-snow">
@@ -100,31 +100,30 @@ export default function GalleryPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4">
             {items.map((g, i) => (
-              <motion.button
+              <button
                 key={g.id}
                 onClick={() => setIndex(i)}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: (i % 12) * 0.04 }}
                 className={cn(
                   "group relative overflow-hidden bg-bone",
+                  "animate-fade-up",
                   g.span === "tall"
                     ? "row-span-2 aspect-[3/4]"
                     : g.span === "wide"
                     ? "col-span-2 aspect-[16/10]"
                     : "aspect-square",
                 )}
+                style={{ animationDelay: `${(i % 12) * 40}ms` }}
               >
                 <Image
                   src={g.url}
                   alt={g.alt}
                   fill
                   loading="lazy"
-                  className="object-cover transition-transform duration-[1500ms] group-hover:scale-105"
+                  quality={70}
+                  className="object-cover transition-transform duration-700 md:group-hover:scale-[1.04]"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
-              </motion.button>
+              </button>
             ))}
           </div>
         </div>

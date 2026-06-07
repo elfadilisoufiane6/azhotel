@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
 
 /**
- * Full-bleed cinematic showcase. Image + parallax + short title overlay.
- * Each Showcase has its own desktop image AND mobile image.
+ * Full-bleed cinematic showcase. Each Showcase has its own desktop & mobile image.
+ * (We dropped the useScroll/useTransform parallax — it forced a layout-thrash on
+ *  every scroll frame on cheap phones; the static composition reads just as well.)
  */
 export function Showcase({
   id,
@@ -35,13 +35,9 @@ export function Showcase({
   align?: "left" | "right";
   variant?: "dark" | "light";
 }) {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-
   return (
-    <section id={id} ref={ref} className="relative min-h-[72svh] md:min-h-[100svh] overflow-hidden bg-brand-900">
-      <motion.div style={{ y: imageY }} className="absolute inset-[-10%]">
+    <section id={id} className="relative min-h-[72svh] md:min-h-[100svh] overflow-hidden bg-brand-900">
+      <div className="absolute inset-0">
         <ResponsiveImage
           desktop={desktop}
           mobile={mobile}
@@ -49,7 +45,7 @@ export function Showcase({
           fill loading="lazy" quality={75}
           className="object-cover"
         />
-      </motion.div>
+      </div>
       <div className={`absolute inset-0 ${variant === "dark" ? "bg-brand-900/55" : "bg-brand-900/30"}`} />
 
       <div className="relative container min-h-[72svh] md:min-h-[100svh] flex items-center py-20 md:py-32">

@@ -32,11 +32,10 @@ export function Marquee() {
       </div>
 
       <div className="relative">
-        <motion.div
-          className="flex gap-3 sm:gap-4 md:gap-6 will-change-transform"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-        >
+        {/* CSS keyframe-driven marquee: GPU compositor, doesn't trigger React
+            re-renders, respects prefers-reduced-motion. Far smoother than the
+            framer-motion x-animation we had before. */}
+        <div className="marquee-track flex gap-3 sm:gap-4 md:gap-6">
           {[...photos, ...photos].map((src, i) => (
             <div
               key={i}
@@ -46,14 +45,14 @@ export function Marquee() {
                 src={src}
                 alt=""
                 fill
-                loading="eager"
-                quality={72}
+                loading={i < 4 ? "eager" : "lazy"}
+                quality={70}
                 className="object-cover"
                 sizes="(max-width: 640px) 200px, (max-width: 768px) 280px, 360px"
               />
             </div>
           ))}
-        </motion.div>
+        </div>
 
         <div className="absolute inset-y-0 left-0 w-8 md:w-24 bg-gradient-to-r from-snow to-transparent pointer-events-none z-10" />
         <div className="absolute inset-y-0 right-0 w-8 md:w-24 bg-gradient-to-l from-snow to-transparent pointer-events-none z-10" />

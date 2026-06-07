@@ -20,7 +20,7 @@ export function Hero() {
           fill priority
           fetchPriority="high"
           quality={80}
-          className="object-cover animate-ken-burns"
+          className="object-cover md:animate-ken-burns"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-900/55 via-brand-900/30 to-brand-900/85" />
       </div>

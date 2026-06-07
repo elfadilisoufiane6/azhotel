@@ -122,18 +122,23 @@ export function Header() {
           </Link>
         </div>
 
-        {/* Mobile burger */}
+        {/* Mobile burger — branded plaque so it's always legible against any hero */}
         <div className="lg:hidden flex items-center gap-2">
           <LanguageSwitcher variant={transparent ? "dark" : "light"} />
           <button
             aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             className={cn(
-              "p-2 transition-colors",
-              open ? "text-snow" : transparent ? "text-snow" : "text-ink",
+              "relative size-11 flex items-center justify-center transition-all duration-300",
+              open
+                ? "bg-brand-200 text-brand-900 shadow-luxe"
+                : transparent
+                ? "border border-snow/40 text-snow hover:bg-snow/10 backdrop-blur-md"
+                : "bg-brand-500 text-snow hover:bg-brand-600 shadow-soft",
             )}
           >
-            {open ? <X className="size-6" /> : <Menu className="size-6" />}
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
       </div>

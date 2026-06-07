@@ -22,7 +22,7 @@ export default function BookingPage() {
           fill priority
           fetchPriority="high"
           quality={80}
-          className="object-cover animate-ken-burns"
+          className="object-cover md:animate-ken-burns"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-900/85 via-brand-900/45 to-brand-900/60" />
         <div className="absolute inset-x-0 bottom-0 container pb-10 pt-24 md:pb-14 md:pt-32 text-snow">

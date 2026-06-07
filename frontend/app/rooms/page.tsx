@@ -22,7 +22,7 @@ export default function RoomsPage() {
           fill priority
           fetchPriority="high"
           quality={80}
-          className="object-cover animate-ken-burns"
+          className="object-cover md:animate-ken-burns"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-900/80 via-brand-900/30 to-brand-900/55" />
         <div className="absolute inset-x-0 bottom-0 container pb-10 pt-24 md:pb-14 md:pt-32 text-snow">
@@ -67,14 +67,16 @@ export default function RoomsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-120px" }}
                 transition={{ duration: 0.9, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="group flex flex-col bg-snow border border-brand-100 shadow-card hover:shadow-luxe hover:-translate-y-1 transition-all duration-500"
+                className="group flex flex-col bg-snow border border-brand-100 shadow-card md:hover:shadow-luxe md:hover:-translate-y-1 transition-shadow duration-300"
               >
                 <Link href={`/rooms/${room.slug}`} className="relative block aspect-[4/3] overflow-hidden bg-bone">
                   <Image
                     src={room.images[0].url}
                     alt={room.images[0].alt}
                     fill
-                    className="object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-110"
+                    loading="lazy"
+                    quality={70}
+                    className="object-cover transition-transform duration-700 ease-out md:group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

@@ -14,8 +14,8 @@ export function Hero() {
     <section className="relative min-h-[78svh] md:min-h-[100svh] w-full overflow-hidden text-snow">
       <div className="absolute inset-0">
         <ResponsiveImage
-          desktop="/images/home/hero/main.png"
-          mobile="/images/home/hero/mobile.png"
+          desktop="/images/home/hero/main.jpg"
+          mobile="/images/home/hero/mobile.jpg"
           alt=""
           fill priority
           fetchPriority="high"

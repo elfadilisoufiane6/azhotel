@@ -44,9 +44,9 @@ export const galleryImages: GalleryItem[] = [
   ]),
 
   ...build("restaurant", [
-    { file: "01.png", alt: "Beef tagine, almonds & figs",    span: "tall" },
+    { file: "01.jpg", alt: "Beef tagine, almonds & figs",    span: "tall" },
     { file: "02.jpg", alt: "Slow-cooked kefta tagine" },
-    { file: "03.png", alt: "Couscous Royal" },
+    { file: "03.jpg", alt: "Couscous Royal" },
     { file: "04.jpg", alt: "Lamb tagine, preserved lemon",   span: "tall" },
     { file: "05.jpg", alt: "Atlantic sea bream" },
     { file: "06.jpg", alt: "Pan-seared salmon" },
@@ -61,7 +61,7 @@ export const galleryImages: GalleryItem[] = [
 
   ...build("lobby", [
     { file: "01.jpg", alt: "Lobby with golden chandelier",   span: "tall" },
-    { file: "02.png", alt: "Chandelier bar" },
+    { file: "02.jpg", alt: "Chandelier bar" },
     { file: "03.jpg", alt: "Marble corridor" },
     { file: "04.jpg", alt: "Welcome at reception",           span: "tall" },
     { file: "05.jpg", alt: "Reception desk" },

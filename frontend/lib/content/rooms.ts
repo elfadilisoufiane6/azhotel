@@ -89,7 +89,7 @@ export const rooms: Room[] = [
     view: "Avenue or courtyard",
     // Images live in /public/images/rooms/single/
     images: [
-      { url: "/images/rooms/single/01.png", alt: "Classic Single bed and side table" },
+      { url: "/images/rooms/single/01.jpg", alt: "Classic Single bed and side table" },
       { url: "/images/rooms/single/02.jpg", alt: "Classic Single workspace nook" },
     ],
     amenities: baseAmenities,
@@ -114,7 +114,7 @@ export const rooms: Room[] = [
     view: "Private balcony · courtyard",
     // Images live in /public/images/rooms/suite/
     images: [
-      { url: "/images/rooms/suite/01.png", alt: "Suite balcony with breakfast for two" },
+      { url: "/images/rooms/suite/01.jpg", alt: "Suite balcony with breakfast for two" },
       { url: "/images/rooms/suite/02.jpg", alt: "Suite balcony tea service" },
       { url: "/images/rooms/suite/03.jpg", alt: "Suite in-room workspace with kettle" },
       { url: "/images/rooms/suite/04.jpg", alt: "Suite open balcony doors" },

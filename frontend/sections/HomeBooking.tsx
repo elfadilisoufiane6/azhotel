@@ -12,8 +12,8 @@ export function HomeBooking() {
   return (
     <section id="booking" className="relative overflow-hidden">
       <ResponsiveImage
-        desktop="/images/home/booking/main.png"
-        mobile="/images/home/booking/mobile.png"
+        desktop="/images/home/booking/main.jpg"
+        mobile="/images/home/booking/mobile.jpg"
         alt=""
         fill loading="lazy" quality={70}
         className="object-cover"

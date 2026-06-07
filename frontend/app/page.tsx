@@ -18,7 +18,7 @@ export default function HomePage() {
       <Showcase
         id="stay"
         desktop="/images/home/stay/main.jpg"
-        mobile="/images/home/stay/mobile.png"
+        mobile="/images/home/stay/mobile.jpg"
         eyebrow={t.rooms.eyebrow}
         title1={t.rooms.title1}
         title2={t.rooms.title2}
@@ -31,7 +31,7 @@ export default function HomePage() {
       <Showcase
         id="dining"
         desktop="/images/home/dining/main.jpg"
-        mobile="/images/home/dining/mobile.png"
+        mobile="/images/home/dining/mobile.jpg"
         eyebrow={t.dining.eyebrow}
         title1={t.dining.title1}
         title2={t.dining.title2}
@@ -43,8 +43,8 @@ export default function HomePage() {
 
       <Showcase
         id="address"
-        desktop="/images/home/address/main.png"
-        mobile="/images/home/address/mobile.png"
+        desktop="/images/home/address/main.jpg"
+        mobile="/images/home/address/mobile.jpg"
         eyebrow={t.address.eyebrow}
         title1={t.address.title1}
         title2={t.address.title2}

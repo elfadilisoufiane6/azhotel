@@ -16,8 +16,8 @@ export default function BookingPage() {
       {/* Hero */}
       <section className="relative h-[58vh] min-h-[380px] md:h-[70vh] md:min-h-[480px] overflow-hidden">
         <ResponsiveImage
-          desktop="/images/pages/booking/main.png"
-          mobile="/images/pages/booking/mobile.png"
+          desktop="/images/pages/booking/main.jpg"
+          mobile="/images/pages/booking/mobile.jpg"
           alt=""
           fill priority
           fetchPriority="high"

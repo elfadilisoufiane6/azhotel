@@ -4,9 +4,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useT } from "@/lib/i18n";
 
-// Actual files in `/public/images/home/marquee/` — 01.png … 10.png.
+// Actual files in `/public/images/home/marquee/` — 01.jpg … 10.jpg.
 const photos = Array.from({ length: 10 }, (_, i) =>
-  `/images/home/marquee/${String(i + 1).padStart(2, "0")}.png`,
+  `/images/home/marquee/${String(i + 1).padStart(2, "0")}.jpg`,
 );
 
 export function Marquee() {

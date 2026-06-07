@@ -164,8 +164,11 @@ export function Header() {
             : "opacity-0 translate-x-2 pointer-events-none",
         )}
       >
-        <nav className="container pt-8 pb-12 flex flex-col">
-          <span className="subtitle text-[10px] mb-6 block">{t.hero.eyebrow}</span>
+        <nav className="container pt-10 pb-12 flex flex-col">
+          <span className="inline-flex items-center gap-3 subtitle text-[10px] mb-8">
+            <span className="block h-px w-6 bg-brand-500/40" />
+            {t.hero.eyebrow}
+          </span>
 
           <ul>
             {nav.map((item, i) => (
@@ -177,23 +180,29 @@ export function Header() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "flex items-center justify-between gap-4 py-6 transition-colors",
+                    "flex items-baseline gap-6 py-7 transition-colors group",
                     item.active ? "text-brand-500" : "text-ink hover:text-brand-500",
                   )}
                 >
-                  <span className="flex items-baseline gap-4">
-                    <span className="text-[11px] smallcaps tracking-[0.32em] text-brand-500/70">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span
-                      className="font-display text-4xl sm:text-5xl leading-none"
-                      style={{ fontWeight: 700, letterSpacing: "-0.02em" }}
-                    >
-                      {item.label}
-                    </span>
+                  <span
+                    className={cn(
+                      "text-[10px] smallcaps tracking-[0.32em] tabular-nums shrink-0 transition-colors",
+                      item.active ? "text-brand-500" : "text-ink/40 group-hover:text-brand-500",
+                    )}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    className="font-display text-[2.5rem] sm:text-5xl leading-[1.05]"
+                    style={{ fontWeight: 400, letterSpacing: "-0.01em" }}
+                  >
+                    {item.label}
                   </span>
                   {item.active && (
-                    <span className="size-2 rounded-full bg-brand-500 shrink-0" aria-hidden />
+                    <span
+                      className="ml-auto mt-3 size-1.5 rounded-full bg-brand-500 shrink-0"
+                      aria-hidden
+                    />
                   )}
                 </Link>
               </li>

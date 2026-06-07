@@ -32,13 +32,13 @@ const nextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
         ],
       },
-      {
-        // Long-lived caching for every static asset Next can't fingerprint itself.
-        source: "/:path((?:images|brand|flags|fonts|videos|textures|icons).*)",
+      // Long-lived caching for every static asset Next can't fingerprint itself.
+      ...["images", "brand", "flags", "fonts", "videos", "textures", "icons"].map((folder) => ({
+        source: `/${folder}/:path*`,
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
-      },
+      })),
     ];
   },
 };

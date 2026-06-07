@@ -122,7 +122,7 @@ export function Header() {
           </Link>
         </div>
 
-        {/* Mobile burger — branded plaque so it's always legible against any hero */}
+        {/* Mobile burger — plain icon, colour follows context */}
         <div className="lg:hidden flex items-center gap-2">
           <LanguageSwitcher variant={transparent ? "dark" : "light"} />
           <button
@@ -130,20 +130,16 @@ export function Header() {
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             className={cn(
-              "relative size-11 flex items-center justify-center transition-all duration-300",
-              open
-                ? "bg-brand-200 text-brand-900 shadow-luxe"
-                : transparent
-                ? "border border-snow/40 text-snow hover:bg-snow/10 backdrop-blur-md"
-                : "bg-brand-500 text-snow hover:bg-brand-600 shadow-soft",
+              "size-11 flex items-center justify-center -mr-2 transition-colors",
+              open ? "text-ink" : transparent ? "text-snow" : "text-ink",
             )}
           >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            {open ? <X className="size-6" strokeWidth={1.5} /> : <Menu className="size-6" strokeWidth={1.5} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile drawer — back to basics: page names + book CTA + phone */}
+      {/* Mobile drawer — page names dominantes, dividers fins, active indicator */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -151,40 +147,57 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="lg:hidden fixed inset-0 top-20 z-40 bg-snow"
+            className="lg:hidden fixed inset-0 top-20 z-40 bg-snow overflow-y-auto"
           >
-            <nav className="container py-12 flex flex-col items-center text-center">
-              {nav.map((item, i) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ y: 18, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 0.05 + i * 0.06 }}
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "block py-5 font-display text-4xl sm:text-5xl transition-colors",
-                      item.active ? "text-brand-500" : "text-ink hover:text-brand-500",
-                    )}
-                    style={{ fontWeight: 700, letterSpacing: "-0.02em" }}
+            <nav className="container pt-10 pb-12 flex flex-col">
+              <ul>
+                {nav.map((item, i) => (
+                  <motion.li
+                    key={item.href}
+                    initial={{ y: 14, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 0.05 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                    className={cn(i === 0 && "border-t border-brand-100", "border-b border-brand-100")}
                   >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        "flex items-center justify-between py-6 transition-colors",
+                        item.active ? "text-brand-500" : "text-ink hover:text-brand-500",
+                      )}
+                    >
+                      <span
+                        className="font-display text-4xl sm:text-5xl"
+                        style={{ fontWeight: 700, letterSpacing: "-0.02em" }}
+                      >
+                        {item.label}
+                      </span>
+                      {item.active && (
+                        <span className="size-2 rounded-full bg-brand-500" aria-hidden />
+                      )}
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
 
               <motion.div
-                initial={{ y: 18, opacity: 0 }}
+                initial={{ y: 14, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
-                className="mt-10 flex flex-col items-center gap-6"
+                className="mt-10 flex flex-col items-stretch gap-5"
               >
-                <Link href="/booking" onClick={() => setOpen(false)} className="btn-primary">
+                <Link
+                  href="/booking"
+                  onClick={() => setOpen(false)}
+                  className="btn-primary w-full justify-center"
+                >
                   {t.common.checkAvail}
                 </Link>
-                <a href={`tel:${site.phoneTel}`} className="flex items-center gap-2 text-ink/70 text-sm">
+                <a
+                  href={`tel:${site.phoneTel}`}
+                  className="flex items-center justify-center gap-3 text-ink/75 hover:text-brand-500 transition-colors text-sm"
+                >
                   <Phone className="size-4 text-brand-500" />
                   {site.phone}
                 </a>

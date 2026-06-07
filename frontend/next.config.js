@@ -12,15 +12,13 @@ const nextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
   images: {
-    // Static export can't run the Next image optimizer.
-    unoptimized: isStaticExport,
-    // Next will serve AVIF then WebP, falling back to JPEG
-    formats: ["image/avif", "image/webp"],
-    // Smaller device sizes = smaller served images on phones
+    // We pre-optimise every asset in scripts/optimize-images.mjs to <160 KB.
+    // Bypass the /_next/image runtime optimiser entirely — it adds a request
+    // hop, fails silently behind some reverse proxies, and needs sharp at
+    // runtime. Images now serve straight from /public, immutably cached.
+    unoptimized: true,
     deviceSizes: [360, 640, 768, 1024, 1280, 1536, 1920],
     imageSizes: [64, 96, 128, 192, 256, 384],
-    // Cache optimized images for one year
-    minimumCacheTTL: 60 * 60 * 24 * 365,
   },
   async headers() {
     return [

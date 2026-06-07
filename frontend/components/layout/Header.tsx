@@ -139,7 +139,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile drawer — page names dominantes, dividers fins, active indicator */}
+      {/* Mobile drawer — bold page-name list, animated, professional */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -149,43 +149,52 @@ export function Header() {
             transition={{ duration: 0.25 }}
             className="lg:hidden fixed inset-0 top-20 z-40 bg-snow overflow-y-auto"
           >
-            <nav className="container pt-10 pb-12 flex flex-col">
+            <nav className="container pt-8 pb-12 flex flex-col">
+              <span className="subtitle text-[10px] mb-6 block">{t.hero.eyebrow}</span>
+
               <ul>
                 {nav.map((item, i) => (
-                  <motion.li
+                  <li
                     key={item.href}
-                    initial={{ y: 14, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.05 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
                     className={cn(i === 0 && "border-t border-brand-100", "border-b border-brand-100")}
+                    style={{
+                      opacity: 0,
+                      animation: `fade-up 0.5s ${0.05 + i * 0.07}s cubic-bezier(0.16,1,0.3,1) forwards`,
+                    }}
                   >
                     <Link
                       href={item.href}
                       onClick={() => setOpen(false)}
                       className={cn(
-                        "flex items-center justify-between py-6 transition-colors",
+                        "flex items-center justify-between gap-4 py-6 transition-colors",
                         item.active ? "text-brand-500" : "text-ink hover:text-brand-500",
                       )}
                     >
-                      <span
-                        className="font-display text-4xl sm:text-5xl"
-                        style={{ fontWeight: 700, letterSpacing: "-0.02em" }}
-                      >
-                        {item.label}
+                      <span className="flex items-baseline gap-4">
+                        <span className="text-[11px] smallcaps tracking-[0.32em] text-brand-500/70">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span
+                          className="font-display text-4xl sm:text-5xl leading-none"
+                          style={{ fontWeight: 700, letterSpacing: "-0.02em" }}
+                        >
+                          {item.label}
+                        </span>
                       </span>
                       {item.active && (
-                        <span className="size-2 rounded-full bg-brand-500" aria-hidden />
+                        <span className="size-2 rounded-full bg-brand-500 shrink-0" aria-hidden />
                       )}
                     </Link>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
 
-              <motion.div
-                initial={{ y: 14, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-                className="mt-10 flex flex-col items-stretch gap-5"
+              <div
+                className="mt-10 flex flex-col items-stretch gap-4"
+                style={{
+                  opacity: 0,
+                  animation: "fade-up 0.5s 0.35s cubic-bezier(0.16,1,0.3,1) forwards",
+                }}
               >
                 <Link
                   href="/booking"
@@ -201,7 +210,7 @@ export function Header() {
                   <Phone className="size-4 text-brand-500" />
                   {site.phone}
                 </a>
-              </motion.div>
+              </div>
             </nav>
           </motion.div>
         )}

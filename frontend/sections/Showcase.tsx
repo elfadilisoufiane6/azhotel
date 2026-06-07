@@ -1,14 +1,11 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
 
 /**
  * Full-bleed cinematic showcase. Each Showcase has its own desktop & mobile image.
- * (We dropped the useScroll/useTransform parallax — it forced a layout-thrash on
- *  every scroll frame on cheap phones; the static composition reads just as well.)
+ * No framer-motion: text reveal is pure `.animate-fade-up` CSS with staggered
+ * delays, so the section is server-renderable and costs zero JS at runtime.
  */
 export function Showcase({
   id,
@@ -42,7 +39,7 @@ export function Showcase({
           desktop={desktop}
           mobile={mobile}
           alt=""
-          fill loading="lazy" quality={75}
+          fill loading="lazy"
           className="object-cover"
         />
       </div>
@@ -50,56 +47,49 @@ export function Showcase({
 
       <div className="relative container min-h-[72svh] md:min-h-[100svh] flex items-center py-20 md:py-32">
         <div className={`max-w-2xl ${align === "right" ? "md:ml-auto md:text-right" : ""}`}>
-          <motion.span
-            className={`inline-flex items-center gap-3 subtitle-light ${align === "right" ? "md:flex-row-reverse" : ""}`}
-            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.7 }}
+          <span
+            className={`inline-flex items-center gap-3 subtitle-light animate-fade-up ${align === "right" ? "md:flex-row-reverse" : ""}`}
           >
-            <motion.span
-              initial={{ width: 0 }} whileInView={{ width: 28 }}
-              viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="block h-px bg-brand-200/70"
-            />
+            <span className="block h-px w-7 bg-brand-200/70" />
             {eyebrow}
-          </motion.span>
+          </span>
 
-          <motion.h2
-            className="mt-5 md:mt-6 font-display text-snow"
+          <h2
+            className="mt-5 md:mt-6 font-display text-snow animate-fade-up"
             style={{
               fontWeight: 500,
               fontSize: "clamp(2.25rem, 7vw, 5.75rem)",
               lineHeight: 1.02,
               letterSpacing: "-0.025em",
+              animationDelay: "120ms",
             }}
-            initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 1.1, delay: 0.15, ease: [0.19, 1, 0.22, 1] }}
           >
             {title1}
             <br />
             <em className="text-brand-200" style={{ fontFamily: "var(--font-editorial)", fontWeight: 400 }}>
               {title2}
             </em>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            className="mt-5 md:mt-8 max-w-md text-snow/85 leading-relaxed text-[15px] md:text-base"
-            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 }}
+          <p
+            className="mt-5 md:mt-8 max-w-md text-snow/85 leading-relaxed text-[15px] md:text-base animate-fade-up"
+            style={{ animationDelay: "240ms" }}
           >
             {body}
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.45 }}
-            className={`mt-8 md:mt-10 inline-flex ${align === "right" ? "md:ml-auto" : ""}`}
+          <div
+            className={`mt-8 md:mt-10 inline-flex animate-fade-up ${align === "right" ? "md:ml-auto" : ""}`}
+            style={{ animationDelay: "360ms" }}
           >
-            <Link href={href}
-                  className="group inline-flex items-center gap-3 text-snow border-b border-brand-200/60 pb-1 smallcaps tracking-[0.32em] text-[11px] md:text-sm hover:text-brand-200 hover:border-brand-200 transition-colors">
+            <Link
+              href={href}
+              className="group inline-flex items-center gap-3 text-snow border-b border-brand-200/60 pb-1 smallcaps tracking-[0.32em] text-[11px] md:text-sm hover:text-brand-200 hover:border-brand-200 transition-colors"
+            >
               {cta}
               <ArrowUpRight className="size-4 transition-transform group-hover:rotate-12" />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

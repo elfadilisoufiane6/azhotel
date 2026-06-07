@@ -17,7 +17,7 @@ export function MobileBookingBar() {
 
   return (
     <div
-      className="lg:hidden fixed inset-x-0 bottom-0 z-40 bg-snow/95 backdrop-blur-xl border-t border-brand-100 shadow-[0_-12px_30px_-12px_rgba(20,41,80,0.18)]"
+      className="lg:hidden fixed inset-x-0 bottom-0 z-40 bg-snow border-t border-brand-100 shadow-[0_-12px_30px_-12px_rgba(20,41,80,0.18)]"
       style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
     >
       <div className="container flex items-center justify-between gap-4 py-3">

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { BookingForm } from "@/components/booking/BookingForm";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
@@ -15,7 +14,7 @@ export function HomeBooking() {
         desktop="/images/home/booking/main.jpg"
         mobile="/images/home/booking/mobile.jpg"
         alt=""
-        fill loading="lazy" quality={70}
+        fill loading="lazy"
         className="object-cover"
       />
       <div className="absolute inset-0 bg-brand-900/92" />
@@ -23,13 +22,7 @@ export function HomeBooking() {
       <div className="relative container py-16 md:py-24 lg:py-32 text-snow">
         {/* Header */}
         <div className="grid lg:grid-cols-12 gap-8 md:gap-12 items-end mb-10 md:mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-120px" }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7"
-          >
+          <div className="lg:col-span-7 animate-fade-up">
             <span className="subtitle-light">{t.booking.eyebrow}</span>
             <h2
               className="mt-5 font-display text-snow text-balance"
@@ -45,46 +38,32 @@ export function HomeBooking() {
                 {t.booking.title2}
               </em>
             </h2>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.15 }}
-            className="lg:col-span-5"
-          >
+          <div className="lg:col-span-5 animate-fade-up" style={{ animationDelay: "150ms" }}>
             <p className="text-snow/80 max-w-md leading-relaxed">{t.booking.lede}</p>
-          </motion.div>
+          </div>
         </div>
 
         {/* Booking form */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, delay: 0.25 }}
-          className="bg-snow p-3 lg:p-2 shadow-luxe"
-        >
+        <div className="bg-snow p-3 lg:p-2 shadow-luxe animate-fade-up" style={{ animationDelay: "300ms" }}>
           <BookingForm variant="inline" />
-        </motion.div>
+        </div>
 
         {/* Reassurances */}
         <ul className="mt-12 md:mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8 md:gap-y-10 border-t border-snow/15 pt-10 md:pt-12">
           {t.booking.reassure.map((r, i) => (
-            <motion.li
+            <li
               key={r.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.4 + i * 0.08 }}
+              className="animate-fade-up"
+              style={{ animationDelay: `${400 + i * 80}ms` }}
             >
               <CheckCircle2 className="size-5 text-brand-200" />
               <p className="mt-4 font-display text-xl text-snow" style={{ fontWeight: 600 }}>
                 {r.title}
               </p>
               <p className="mt-1 text-sm text-snow/70 leading-relaxed">{r.body}</p>
-            </motion.li>
+            </li>
           ))}
         </ul>
       </div>

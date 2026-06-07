@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/cn";
@@ -25,7 +24,17 @@ export function Header() {
   ];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    // requestAnimationFrame batches the scroll handler against the next paint —
+    // cuts the cost of state updates while the user is dragging on a phone.
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 24);
+        ticking = false;
+      });
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -33,6 +42,7 @@ export function Header() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
   const transparent = isHome && !scrolled && !open;
@@ -40,14 +50,14 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        transparent ? "bg-transparent" : "bg-snow/85 backdrop-blur-xl border-b border-brand-100/80 shadow-sm",
+        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
+        transparent ? "bg-transparent" : "bg-snow border-b border-brand-100 shadow-sm",
       )}
     >
       {/* Utility strip — phone + flags, fades on scroll */}
       <div
         className={cn(
-          "border-b border-snow/15 text-snow text-xs transition-all duration-500 overflow-hidden smallcaps tracking-[0.32em]",
+          "border-b border-snow/15 text-snow text-xs transition-all duration-300 overflow-hidden smallcaps tracking-[0.32em]",
           transparent ? "max-h-10 opacity-100" : "max-h-0 opacity-0",
         )}
       >
@@ -139,82 +149,75 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile drawer — bold page-name list, animated, professional */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="lg:hidden fixed inset-0 top-20 z-40 bg-snow overflow-y-auto"
-          >
-            <nav className="container pt-8 pb-12 flex flex-col">
-              <span className="subtitle text-[10px] mb-6 block">{t.hero.eyebrow}</span>
+      {/* Mobile drawer — always in DOM, visibility toggled via classes.
+          Pure CSS, no framer-motion. Guaranteed to render. */}
+      <div
+        id="mobile-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden={!open}
+        className={cn(
+          "lg:hidden fixed inset-x-0 top-20 bottom-0 z-40 bg-snow overflow-y-auto",
+          "transition-[opacity,transform] duration-300 ease-out",
+          open
+            ? "opacity-100 translate-x-0 pointer-events-auto"
+            : "opacity-0 translate-x-2 pointer-events-none",
+        )}
+      >
+        <nav className="container pt-8 pb-12 flex flex-col">
+          <span className="subtitle text-[10px] mb-6 block">{t.hero.eyebrow}</span>
 
-              <ul>
-                {nav.map((item, i) => (
-                  <li
-                    key={item.href}
-                    className={cn(i === 0 && "border-t border-brand-100", "border-b border-brand-100")}
-                    style={{
-                      opacity: 0,
-                      animation: `fade-up 0.5s ${0.05 + i * 0.07}s cubic-bezier(0.16,1,0.3,1) forwards`,
-                    }}
-                  >
-                    <Link
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className={cn(
-                        "flex items-center justify-between gap-4 py-6 transition-colors",
-                        item.active ? "text-brand-500" : "text-ink hover:text-brand-500",
-                      )}
-                    >
-                      <span className="flex items-baseline gap-4">
-                        <span className="text-[11px] smallcaps tracking-[0.32em] text-brand-500/70">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <span
-                          className="font-display text-4xl sm:text-5xl leading-none"
-                          style={{ fontWeight: 700, letterSpacing: "-0.02em" }}
-                        >
-                          {item.label}
-                        </span>
-                      </span>
-                      {item.active && (
-                        <span className="size-2 rounded-full bg-brand-500 shrink-0" aria-hidden />
-                      )}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
-              <div
-                className="mt-10 flex flex-col items-stretch gap-4"
-                style={{
-                  opacity: 0,
-                  animation: "fade-up 0.5s 0.35s cubic-bezier(0.16,1,0.3,1) forwards",
-                }}
+          <ul>
+            {nav.map((item, i) => (
+              <li
+                key={item.href}
+                className={cn(i === 0 && "border-t border-brand-100", "border-b border-brand-100")}
               >
                 <Link
-                  href="/booking"
+                  href={item.href}
                   onClick={() => setOpen(false)}
-                  className="btn-primary w-full justify-center"
+                  className={cn(
+                    "flex items-center justify-between gap-4 py-6 transition-colors",
+                    item.active ? "text-brand-500" : "text-ink hover:text-brand-500",
+                  )}
                 >
-                  {t.common.checkAvail}
+                  <span className="flex items-baseline gap-4">
+                    <span className="text-[11px] smallcaps tracking-[0.32em] text-brand-500/70">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className="font-display text-4xl sm:text-5xl leading-none"
+                      style={{ fontWeight: 700, letterSpacing: "-0.02em" }}
+                    >
+                      {item.label}
+                    </span>
+                  </span>
+                  {item.active && (
+                    <span className="size-2 rounded-full bg-brand-500 shrink-0" aria-hidden />
+                  )}
                 </Link>
-                <a
-                  href={`tel:${site.phoneTel}`}
-                  className="flex items-center justify-center gap-3 text-ink/75 hover:text-brand-500 transition-colors text-sm"
-                >
-                  <Phone className="size-4 text-brand-500" />
-                  {site.phone}
-                </a>
-              </div>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-10 flex flex-col items-stretch gap-4">
+            <Link
+              href="/booking"
+              onClick={() => setOpen(false)}
+              className="btn-primary w-full justify-center"
+            >
+              {t.common.checkAvail}
+            </Link>
+            <a
+              href={`tel:${site.phoneTel}`}
+              className="flex items-center justify-center gap-3 text-ink/75 hover:text-brand-500 transition-colors text-sm"
+            >
+              <Phone className="size-4 text-brand-500" />
+              {site.phone}
+            </a>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }

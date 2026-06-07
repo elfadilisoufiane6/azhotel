@@ -1,0 +1,82 @@
+import type { Metadata, Viewport } from "next";
+import { Playfair_Display, Manrope, DM_Serif_Display } from "next/font/google";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { WhatsAppButton } from "@/components/common/WhatsAppButton";
+import { MobileBookingBar } from "@/components/common/MobileBookingBar";
+import { StructuredData } from "@/components/common/StructuredData";
+import { I18nProvider } from "@/lib/i18n";
+import { site } from "@/lib/site";
+import "./globals.css";
+
+const display = Playfair_Display({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const editorial = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-editorial",
+  display: "swap",
+});
+
+const sans = Manrope({
+  subsets: ["latin", "latin-ext"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} — Boutique Luxury Hotel in Rabat`,
+    template: `%s · ${site.name}`,
+  },
+  description: site.description,
+  applicationName: site.name,
+  manifest: "/manifest.webmanifest",
+  icons: { icon: [{ url: "/favicon.svg", type: "image/svg+xml" }] },
+  openGraph: {
+    type: "website",
+    url: site.url,
+    siteName: site.name,
+    title: site.name,
+    description: site.description,
+    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: site.name }],
+  },
+  twitter: { card: "summary_large_image", title: site.name, description: site.description, images: ["/og-image.svg"] },
+  alternates: { canonical: site.url },
+  robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+    { media: "(prefers-color-scheme: dark)",  color: "#0A1934" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="fr" className={`${display.variable} ${editorial.variable} ${sans.variable}`}>
+      <body>
+        <I18nProvider>
+          <StructuredData />
+          <Header />
+          <main id="main" className="pb-[72px] lg:pb-0">{children}</main>
+          <Footer />
+          <WhatsAppButton />
+          <MobileBookingBar />
+        </I18nProvider>
+      </body>
+    </html>
+  );
+}

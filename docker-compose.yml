@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: az-hotel-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: az_hotel
+      POSTGRES_USER: az_hotel
+      POSTGRES_PASSWORD: az_hotel_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/database/migrations:/docker-entrypoint-initdb.d:ro
+
+  backend:
+    build: ./backend
+    container_name: az-hotel-backend
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgresql://az_hotel:az_hotel_dev@postgres:5432/az_hotel
+      JWT_SECRET: change-me-in-production
+      FRONTEND_ORIGIN: http://localhost:3000
+      ADMIN_ORIGIN: http://localhost:3001
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend/uploads:/app/uploads
+
+  frontend:
+    build: ./frontend
+    container_name: az-hotel-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:4000/api
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+    ports:
+      - "3000:3000"
+
+  admin:
+    build: ./admin-dashboard
+    container_name: az-hotel-admin
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:4000/api
+    ports:
+      - "3001:3001"
+
+volumes:
+  pgdata:

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body { @apply bg-bg text-ink antialiased; }
+  h1,h2,h3,h4 { @apply font-display tracking-tight; }
+}
+
+@layer components {
+  .card        { @apply bg-white border border-zinc-200/80 rounded-lg shadow-sm; }
+  .card-pad    { @apply p-6; }
+  .stat        { @apply card card-pad flex flex-col gap-1; }
+  .stat-value  { @apply text-3xl font-display text-midnight-800 tracking-tight; }
+  .stat-label  { @apply text-[11px] uppercase tracking-widest text-zinc-500; }
+  .btn-admin   { @apply inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border rounded-md transition; }
+  .btn-primary { @apply btn-admin bg-midnight-800 text-white border-midnight-800 hover:bg-midnight-900; }
+  .btn-ghost   { @apply btn-admin border-zinc-200 hover:border-gold-400 hover:text-gold-500; }
+}

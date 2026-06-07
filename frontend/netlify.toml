@@ -1,0 +1,42 @@
+# Netlify config — temporary static-export host for AZ Hôtel des Arts.
+# Later, on Hostinger VPS, drop this file and serve `npm run start` (SSR).
+
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  # Triggers `output: 'export'` + `images.unoptimized` in next.config.js
+  NEXT_EXPORT = "1"
+  NODE_VERSION = "20"
+
+# SPA-style fallback for client-side route mismatches.
+# Static export still pre-renders every route, so this only catches typos.
+[[redirects]]
+  from = "/*"
+  to = "/404/index.html"
+  status = 404
+
+# Security headers (replace next.config.js `headers()` which static export ignores)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

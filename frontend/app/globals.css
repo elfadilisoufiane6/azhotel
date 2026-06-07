@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display:   "Playfair Display", Georgia, serif;
+    --font-editorial: "DM Serif Display", Georgia, serif;
+    --font-sans:      "Manrope", system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 96px;
+    font-feature-settings: "kern", "liga", "calt";
+  }
+
+  body {
+    @apply bg-snow text-ink font-sans antialiased;
+    font-weight: 400;
+    line-height: 1.7;
+    font-size: 16px;
+    letter-spacing: -0.005em;
+  }
+
+  ::selection { @apply bg-brand-500 text-snow; }
+
+  /* ───── BOLD serif titles ───── */
+  h1, h2, h3, h4 {
+    @apply font-display text-ink;
+    font-weight: 700;
+    letter-spacing: -0.028em;
+  }
+  em {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+  }
+  .editorial { font-family: var(--font-editorial); font-style: italic; }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #F4F6FA; }
+  ::-webkit-scrollbar-thumb { background: #2C5EAD; border-radius: 0; }
+}
+
+@layer components {
+  /* ───── Buttons ───── */
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden px-9 py-4 text-[11px] font-semibold transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2;
+    font-family: var(--font-sans);
+    font-variant: small-caps;
+    letter-spacing: 0.22em;
+  }
+  .btn-primary {
+    @apply btn bg-brand-500 text-snow hover:bg-brand-600 hover:shadow-luxe hover:-translate-y-0.5;
+  }
+  .btn-primary::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full bg-gradient-sheen;
+    transition: transform .9s ease;
+  }
+  .btn-primary:hover::after { transform: translateX(100%); }
+
+  .btn-outline       { @apply btn border border-brand-500/40 text-brand-700 hover:bg-brand-500 hover:text-snow; }
+  .btn-outline-light { @apply btn border border-snow/40 text-snow hover:bg-snow hover:text-brand-700; }
+  .btn-ghost         { @apply btn text-ink hover:text-brand-500; }
+  .btn-dark          { @apply btn bg-ink text-snow hover:bg-brand-600; }
+
+  /* ───── Small-Caps Subtitles ───── */
+  .subtitle {
+    @apply inline-block text-brand-500 font-medium text-sm;
+    font-variant: small-caps;
+    font-feature-settings: "smcp", "c2sc";
+    letter-spacing: 0.32em;
+  }
+  .subtitle-light {
+    @apply inline-block text-brand-200 font-medium text-sm;
+    font-variant: small-caps;
+    font-feature-settings: "smcp", "c2sc";
+    letter-spacing: 0.32em;
+  }
+
+  /* Bold serif headlines */
+  .section-title {
+    @apply font-display text-ink text-balance;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+  .section-title em {
+    @apply text-brand-500;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .lede {
+    @apply font-sans text-ink/70 max-w-[50ch] text-pretty;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  /* ───── Layout ───── */
+  .section       { @apply py-20 md:py-36 lg:py-44; }
+  .section-tight { @apply py-14 md:py-28; }
+
+  /* Editorial chrome */
+  .pill {
+    @apply inline-flex items-center gap-2 px-3 py-1 text-xs font-medium bg-snow text-ink;
+    font-variant: small-caps;
+    letter-spacing: 0.22em;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+  .smallcaps    { font-variant: small-caps; font-feature-settings: "smcp"; }
+  .word-mask    { display: inline-block; overflow: hidden; vertical-align: bottom; }
+  .word-mask > span { display: inline-block; }
+}

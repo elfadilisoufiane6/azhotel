@@ -1,0 +1,12 @@
+{
+  "name": "AZ Hôtel des Arts",
+  "short_name": "AZ Hôtel",
+  "description": "Where Moroccan elegance meets contemporary art — boutique luxury in Rabat.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF7F1",
+  "theme_color": "#0A2540",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

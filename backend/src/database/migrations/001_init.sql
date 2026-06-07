@@ -1,6 +1,7 @@
 -- AZ Hôtel des Arts — initial schema
 -- All tables use UUID primary keys and parameterised SQL throughout the app
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+CREATE EXTENSION IF NOT EXISTS citext;
 
 -- ─── USERS ────────────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS users (
@@ -17,7 +18,6 @@ CREATE TABLE IF NOT EXISTS users (
   created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at      TIMESTAMPTZ NOT NULL DEFAULT now()
 );
-CREATE EXTENSION IF NOT EXISTS citext;
 CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
 
 -- ─── AMENITIES ────────────────────────────────────────────────────────────

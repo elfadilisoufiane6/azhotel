@@ -11,10 +11,12 @@ import "./globals.css";
 
 const display = Playfair_Display({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  // 3 weights × 2 styles = 6 font files. We only render headings at 400/500/700.
+  weight: ["400", "500", "700"],
   style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
+  preload: true,
 });
 
 const editorial = DM_Serif_Display({
@@ -27,9 +29,11 @@ const editorial = DM_Serif_Display({
 
 const sans = Manrope({
   subsets: ["latin", "latin-ext"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  // Drop the rare weights (200, 300, 800) — body text only uses 400/500/600/700.
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {

@@ -17,8 +17,8 @@ import sharp from "sharp";
 const here  = path.dirname(fileURLToPath(import.meta.url));
 const root  = path.resolve(here, "..", "public", "images");
 
-const MAX_WIDTH = 1600;
-const JPG_OPTS  = { quality: 65, mozjpeg: true, progressive: true, chromaSubsampling: "4:2:0" };
+const MAX_WIDTH = 1280;
+const JPG_OPTS  = { quality: 60, mozjpeg: true, progressive: true, chromaSubsampling: "4:2:0" };
 
 const stats = { processed: 0, removed: 0, savedBytes: 0 };
 

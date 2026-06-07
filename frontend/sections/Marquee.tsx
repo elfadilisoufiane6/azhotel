@@ -45,8 +45,8 @@ export function Marquee() {
                 src={src}
                 alt=""
                 fill
-                loading={i < 4 ? "eager" : "lazy"}
-                quality={70}
+                loading="eager"
+                quality={68}
                 className="object-cover"
                 sizes="(max-width: 640px) 200px, (max-width: 768px) 280px, 360px"
               />

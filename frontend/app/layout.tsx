@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Manrope, DM_Serif_Display } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppButton } from "@/components/common/WhatsAppButton";
 import { MobileBookingBar } from "@/components/common/MobileBookingBar";
 import { StructuredData } from "@/components/common/StructuredData";
 import { I18nProvider } from "@/lib/i18n";
@@ -77,7 +76,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main id="main">{children}</main>
           <Footer />
-          <WhatsAppButton />
           <MobileBookingBar />
         </I18nProvider>
       </body>

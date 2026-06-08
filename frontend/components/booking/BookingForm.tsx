@@ -86,8 +86,8 @@ function Field({
   const labelColor = variant === "compact" ? "text-brand-200" : "text-ink/65";
   const wrap = variant === "compact" ? "border border-snow/15" : "border border-brand-100 bg-snow";
   return (
-    <label className={cn("flex flex-col gap-1 px-4 py-2.5", wrap)}>
-      <span className={cn("flex items-center gap-2 text-[10px] smallcaps tracking-[0.32em]", labelColor)}>
+    <label className={cn("flex flex-col gap-0.5 px-3 py-2 lg:px-4 lg:py-2.5", wrap)}>
+      <span className={cn("flex items-center gap-2 text-[10px] smallcaps tracking-[0.28em] lg:tracking-[0.32em]", labelColor)}>
         {icon}
         {label}
       </span>

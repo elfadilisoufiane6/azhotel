@@ -78,7 +78,8 @@ export function BookingClient() {
           fill loading="lazy" quality={75}
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-brand-900/92" />
+        {/* Heavier overlay so contact info stays high-contrast on every photo */}
+        <div className="absolute inset-0 bg-brand-900/97" />
 
         <div className="relative container py-16 md:py-24 lg:py-32 text-snow">
           <div className="grid lg:grid-cols-12 gap-10 md:gap-12">
@@ -110,14 +111,14 @@ export function BookingClient() {
 
               <ul className="mt-8 space-y-4">
                 {site.languages.map((l) => (
-                  <li key={l.code} className="flex items-center gap-4 text-snow/90">
+                  <li key={l.code} className="flex items-center gap-4 text-snow">
                     <Image src={l.flag} alt={l.code} width={36} height={24} className="rounded-sm shadow-sm" />
                     <span className="font-display text-xl">{l.label}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-10 flex items-center gap-3 text-snow/70 text-sm">
+              <div className="mt-10 flex items-center gap-3 text-snow/90 text-sm">
                 <Clock className="size-4 text-brand-200" />
                 <span>{t.booking.reception24}</span>
               </div>
@@ -134,12 +135,12 @@ function ContactItem({
 }: { icon: typeof Phone; label: string; value: string; href?: string }) {
   const inner = (
     <>
-      <span className="size-11 border border-snow/30 text-brand-200 flex items-center justify-center shrink-0 transition-colors group-hover:border-brand-200 group-hover:bg-snow group-hover:text-brand-700">
+      <span className="size-11 border border-snow/50 text-brand-200 flex items-center justify-center shrink-0 transition-colors group-hover:border-brand-200 group-hover:bg-snow group-hover:text-brand-700">
         <Icon className="size-4" />
       </span>
-      <div>
-        <p className="subtitle-light text-xs">{label}</p>
-        <p className="mt-1 font-display text-lg text-snow">{value}</p>
+      <div className="min-w-0">
+        <p className="text-[10px] smallcaps tracking-[0.28em] text-brand-200 font-medium">{label}</p>
+        <p className="mt-1 font-display text-lg text-snow break-words" style={{ fontWeight: 600 }}>{value}</p>
       </div>
     </>
   );

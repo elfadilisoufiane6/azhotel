@@ -76,9 +76,9 @@ export const fr = {
     galleryTitle:   "Ce que notre chef sert aujourd'hui.",
   },
   booking: {
-    eyebrow:  "Réservez en direct · Économisez 15%",
-    title1:   "Réservez votre",
-    title2:   "escapade à Rabat.",
+    eyebrow:  "Réservation directe · Meilleur tarif garanti",
+    title1:   "Une réservation.",
+    title2:   "Tout votre séjour.",
     lede:     "Des voyageurs de plus de 80 pays font confiance à AZ Hôtel des Arts. Réservez directement sur notre site pour bénéficier de notre meilleur tarif, d'une annulation gratuite et d'un accueil personnel par l'équipe.",
     reassure: [
       { title: "Meilleur tarif garanti",       body: "Le prix le plus bas en ligne — réservez en direct, économisez 15%." },

@@ -20,18 +20,18 @@ export function HomeBooking() {
       {/* Stronger overlay so the body copy stays high-contrast against the photo */}
       <div className="absolute inset-0 bg-brand-900/97" />
 
-      <div className="relative container py-16 md:py-24 lg:py-32 text-snow">
+      <div className="relative container py-12 md:py-24 lg:py-32 text-snow">
         {/* Header */}
-        <div className="grid lg:grid-cols-12 gap-8 md:gap-12 items-end mb-10 md:mb-12">
+        <div className="grid lg:grid-cols-12 gap-6 md:gap-12 items-end mb-8 md:mb-12">
           <div className="lg:col-span-7 animate-fade-up">
             <span className="subtitle-light">{t.booking.eyebrow}</span>
             <h2
-              className="mt-5 font-display text-snow text-balance"
+              className="mt-4 md:mt-5 font-display text-snow text-balance"
               style={{
                 fontWeight: 700,
-                fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
-                lineHeight: 1,
-                letterSpacing: "-0.035em",
+                fontSize: "clamp(1.9rem, 6vw, 5.5rem)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.03em",
               }}
             >
               {t.booking.title1}{" "}
@@ -42,12 +42,12 @@ export function HomeBooking() {
           </div>
 
           <div className="lg:col-span-5 animate-fade-up" style={{ animationDelay: "150ms" }}>
-            <p className="text-snow/95 max-w-md leading-relaxed">{t.booking.lede}</p>
+            <p className="text-snow text-[14px] md:text-base max-w-md leading-relaxed">{t.booking.lede}</p>
           </div>
         </div>
 
-        {/* Booking form */}
-        <div className="bg-snow p-3 lg:p-2 shadow-luxe animate-fade-up" style={{ animationDelay: "300ms" }}>
+        {/* Booking form — compact on mobile, snug on desktop */}
+        <div className="bg-snow p-2 shadow-luxe animate-fade-up" style={{ animationDelay: "300ms" }}>
           <BookingForm variant="inline" />
         </div>
 

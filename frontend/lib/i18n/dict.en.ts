@@ -77,9 +77,9 @@ export const en: Dict = {
     galleryTitle:   "What our chef is plating today.",
   },
   booking: {
-    eyebrow:  "Book Direct · Save 15%",
-    title1:   "Reserve your",
-    title2:   "Rabat escape.",
+    eyebrow:  "Book direct · Best rate guaranteed",
+    title1:   "One reservation.",
+    title2:   "Your entire stay.",
     lede:     "Travelers from over 80 countries trust AZ Hôtel des Arts. Reserve directly on our site to unlock our best rate, free cancellation and a personal welcome from the team.",
     reassure: [
       { title: "Best rate guaranteed",     body: "Lowest price online — book direct, save 15%." },

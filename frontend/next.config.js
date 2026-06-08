@@ -30,11 +30,18 @@ const nextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
         ],
       },
-      // Long-lived caching for every static asset Next can't fingerprint itself.
+      // Hashed Next build output (_next/static/*) is already served as
+      // immutable by Next itself. For unhashed assets under /public we
+      // can't use `immutable` because the URL stays the same when the
+      // content changes — every photo swap would be invisible until
+      // users hard-refreshed. Use must-revalidate so the browser
+      // re-asks the server on every navigation and fetches a fresh
+      // copy whenever the bytes change. Hashed Next-served images are
+      // unaffected.
       ...["images", "brand", "flags", "fonts", "videos", "textures", "icons"].map((folder) => ({
         source: `/${folder}/:path*`,
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
         ],
       })),
     ];

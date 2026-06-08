@@ -3,6 +3,7 @@
 import { CheckCircle2 } from "lucide-react";
 import { BookingForm } from "@/components/booking/BookingForm";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
+import { SplitText } from "@/components/ui/SplitText";
 import { useT } from "@/lib/i18n";
 
 export function HomeBooking() {
@@ -10,33 +11,32 @@ export function HomeBooking() {
 
   return (
     <section id="booking">
-      {/* ── Image hero — full-bleed photo with title overlay ── */}
+      {/* ── Image hero — ken-burns + decorative eyebrow + word reveal ── */}
       <div className="relative h-[58vh] min-h-[380px] md:h-[70vh] md:min-h-[480px] overflow-hidden">
         <ResponsiveImage
           desktop="/images/home/booking/main.jpg"
           mobile="/images/home/booking/mobile.jpg"
           alt=""
           fill loading="lazy"
-          className="object-cover"
+          className="object-cover animate-ken-burns"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-900/85 via-brand-900/35 to-brand-900/55" />
 
         <div className="absolute inset-x-0 bottom-0 container pb-10 md:pb-14 pt-24 md:pt-32 text-snow">
-          <span className="subtitle-light animate-fade-up">{t.booking.eyebrow}</span>
+          <span className="inline-flex items-center gap-3 subtitle-light animate-fade-up">
+            <span className="block h-px w-7 bg-brand-200/70" />
+            {t.booking.eyebrow}
+          </span>
           <h2
-            className="mt-4 md:mt-5 font-display text-snow text-balance max-w-4xl animate-fade-up"
+            className="mt-4 md:mt-5 font-display text-snow text-balance max-w-4xl"
             style={{
               fontWeight: 700,
               fontSize: "clamp(1.9rem, 6vw, 5.5rem)",
               lineHeight: 1.02,
               letterSpacing: "-0.03em",
-              animationDelay: "120ms",
             }}
           >
-            {t.booking.title1}{" "}
-            <em className="text-brand-200" style={{ fontFamily: "var(--font-editorial)", fontWeight: 400 }}>
-              {t.booking.title2}
-            </em>
+            <SplitText key={`${t.booking.title1}-${t.booking.title2}`} lines={[t.booking.title1, t.booking.title2]} accentLine={1} />
           </h2>
         </div>
       </div>

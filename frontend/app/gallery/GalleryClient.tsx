@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import "yet-another-react-lightbox/styles.css";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
+import { SplitText } from "@/components/ui/SplitText";
 import { galleryImages, type GalleryCategory } from "@/lib/content/gallery";
 import { useT } from "@/lib/i18n";
 import { cn } from "@/lib/cn";
@@ -28,7 +29,7 @@ export function GalleryClient() {
 
   return (
     <>
-      {/* Hero */}
+      {/* Hero — ken-burns + decorative eyebrow + word reveal */}
       <section className="relative h-[58vh] min-h-[380px] md:h-[70vh] md:min-h-[480px] overflow-hidden">
         <ResponsiveImage
           desktop="/images/pages/gallery/hero.jpg"
@@ -36,23 +37,15 @@ export function GalleryClient() {
           alt=""
           fill priority
           fetchPriority="high"
-          quality={80}
-          className="object-cover md:animate-ken-burns"
+          className="object-cover animate-ken-burns"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-900/85 via-brand-900/30 to-brand-900/50" />
         <div className="absolute inset-x-0 bottom-0 container pb-10 pt-24 md:pb-14 md:pt-32 text-snow">
-          <motion.span
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="subtitle-light"
-          >
+          <span className="inline-flex items-center gap-3 subtitle-light animate-fade-up">
+            <span className="block h-px w-7 bg-brand-200/70" />
             {t.gallery.eyebrow}
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          </span>
+          <h1
             className="mt-5 font-display text-snow max-w-4xl"
             style={{
               fontWeight: 700,
@@ -61,11 +54,8 @@ export function GalleryClient() {
               letterSpacing: "-0.035em",
             }}
           >
-            {t.gallery.title1}<br />
-            <em className="text-brand-200" style={{ fontFamily: "var(--font-editorial)", fontWeight: 400 }}>
-              {t.gallery.title2}
-            </em>
-          </motion.h1>
+            <SplitText key={`${t.gallery.title1}-${t.gallery.title2}`} lines={[t.gallery.title1, t.gallery.title2]} accentLine={1} />
+          </h1>
         </div>
       </section>
 

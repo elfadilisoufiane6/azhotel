@@ -69,50 +69,61 @@ export function BookingClient() {
         </div>
       </section>
 
-      {/* Contact + Languages — light theme for maximum readability */}
-      <section className="relative bg-snow border-t border-brand-100">
-        <div className="container py-16 md:py-24 lg:py-32 text-ink">
-          <div className="grid lg:grid-cols-12 gap-10 md:gap-12">
-            <FadeUp className="lg:col-span-7">
-              <span className="subtitle">{site.phone}</span>
-              <h3 className="mt-5 font-display text-ink"
-                  style={{ fontWeight: 700, fontSize: "clamp(2rem, 4.2vw, 3.5rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
-              >
-                {t.booking.contactTitle1}{" "}
-                <em className="text-brand-500" style={{ fontFamily: "var(--font-editorial)", fontWeight: 400 }}>{t.booking.contactTitle2}</em>
-              </h3>
+      {/* Contact + Languages — image background, content inside a snow card for max contrast */}
+      <section className="relative overflow-hidden">
+        <ResponsiveImage
+          desktop="/images/pages/booking-contact/main.jpg"
+          mobile="/images/pages/booking-contact/mobile.jpg"
+          alt=""
+          fill loading="lazy"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-brand-900/60" />
 
-              <ul className="mt-8 md:mt-10 grid sm:grid-cols-2 gap-y-5 md:gap-y-6 gap-x-8 max-w-2xl">
-                <ContactItem icon={Phone}         label={t.common.phone}    value={site.phone}    href={`tel:${site.phoneTel}`} />
-                <ContactItem icon={MessageCircle} label="WhatsApp"          value={site.whatsapp} href={`https://wa.me/${site.whatsapp.replace(/\D/g, "")}`} />
-                <ContactItem icon={Mail}          label={t.common.email}    value={site.email}    href={`mailto:${site.email}`} />
-                <ContactItem icon={MapPin}        label={t.common.address}  value={`${site.address.street}, ${site.address.city}`} />
-              </ul>
-            </FadeUp>
+        <div className="relative container py-16 md:py-24 lg:py-28">
+          <div className="bg-snow shadow-luxe p-6 md:p-10 lg:p-14 max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-12 gap-10 md:gap-12">
+              <FadeUp className="lg:col-span-7">
+                <span className="subtitle">{site.phone}</span>
+                <h3 className="mt-5 font-display text-ink"
+                    style={{ fontWeight: 700, fontSize: "clamp(1.75rem, 3.8vw, 3.25rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
+                >
+                  {t.booking.contactTitle1}{" "}
+                  <em className="text-brand-500" style={{ fontFamily: "var(--font-editorial)", fontWeight: 400 }}>{t.booking.contactTitle2}</em>
+                </h3>
 
-            <FadeUp delay={0.15} className="lg:col-span-5 lg:border-l lg:border-brand-100 lg:pl-12">
-              <span className="subtitle">{t.common.languagesSpoken}</span>
-              <h3 className="mt-5 font-display text-ink"
-                  style={{ fontWeight: 700, fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
-              >
-                {t.booking.langTitle1}{" "}
-                <em className="text-brand-500" style={{ fontFamily: "var(--font-editorial)", fontWeight: 400 }}>{t.booking.langTitle2}</em>
-              </h3>
+                <ul className="mt-8 md:mt-10 grid sm:grid-cols-2 gap-y-5 md:gap-y-6 gap-x-8 max-w-2xl">
+                  <ContactItem icon={Phone}         label={t.common.phone}    value={site.phone}    href={`tel:${site.phoneTel}`} />
+                  <ContactItem icon={MessageCircle} label="WhatsApp"          value={site.whatsapp} href={`https://wa.me/${site.whatsapp.replace(/\D/g, "")}`} />
+                  <ContactItem icon={Mail}          label={t.common.email}    value={site.email}    href={`mailto:${site.email}`} />
+                  <ContactItem icon={MapPin}        label={t.common.address}  value={`${site.address.street}, ${site.address.city}`} />
+                </ul>
+              </FadeUp>
 
-              <ul className="mt-8 space-y-4">
-                {site.languages.map((l) => (
-                  <li key={l.code} className="flex items-center gap-4 text-ink">
-                    <Image src={l.flag} alt={l.code} width={36} height={24} className="rounded-sm shadow-sm" />
-                    <span className="font-display text-xl" style={{ fontWeight: 500 }}>{l.label}</span>
-                  </li>
-                ))}
-              </ul>
+              <FadeUp delay={0.15} className="lg:col-span-5 lg:border-l lg:border-brand-100 lg:pl-12">
+                <span className="subtitle">{t.common.languagesSpoken}</span>
+                <h3 className="mt-5 font-display text-ink"
+                    style={{ fontWeight: 700, fontSize: "clamp(1.5rem, 2.8vw, 2.25rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
+                >
+                  {t.booking.langTitle1}{" "}
+                  <em className="text-brand-500" style={{ fontFamily: "var(--font-editorial)", fontWeight: 400 }}>{t.booking.langTitle2}</em>
+                </h3>
 
-              <div className="mt-10 flex items-center gap-3 text-ink/75 text-sm">
-                <Clock className="size-4 text-brand-500" />
-                <span>{t.booking.reception24}</span>
-              </div>
-            </FadeUp>
+                <ul className="mt-8 space-y-4">
+                  {site.languages.map((l) => (
+                    <li key={l.code} className="flex items-center gap-4 text-ink">
+                      <Image src={l.flag} alt={l.code} width={36} height={24} className="rounded-sm shadow-sm" />
+                      <span className="font-display text-xl" style={{ fontWeight: 500 }}>{l.label}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-10 flex items-center gap-3 text-ink/75 text-sm">
+                  <Clock className="size-4 text-brand-500" />
+                  <span>{t.booking.reception24}</span>
+                </div>
+              </FadeUp>
+            </div>
           </div>
         </div>
       </section>

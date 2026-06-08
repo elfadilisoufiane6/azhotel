@@ -45,7 +45,7 @@ export function Hero() {
           </h1>
 
           <p
-            className="mt-7 md:mt-9 max-w-xl mx-auto text-snow/85 text-base md:text-lg leading-relaxed animate-fade-up"
+            className="mt-6 md:mt-9 max-w-xl mx-auto text-snow/85 text-[13px] md:text-lg leading-relaxed animate-fade-up"
             style={{ animationDelay: "1.4s" }}
           >
             {t.hero.body}

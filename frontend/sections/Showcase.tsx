@@ -72,7 +72,7 @@ export function Showcase({
           </h2>
 
           <p
-            className="mt-5 md:mt-8 max-w-md text-snow/85 leading-relaxed text-[15px] md:text-base animate-fade-up"
+            className="mt-4 md:mt-8 max-w-md text-snow/85 leading-relaxed text-[13px] md:text-base animate-fade-up"
             style={{ animationDelay: "240ms" }}
           >
             {body}

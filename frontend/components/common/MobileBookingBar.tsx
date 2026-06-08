@@ -13,7 +13,9 @@ const currency = rooms[0]?.currency ?? "MAD";
 export function MobileBookingBar() {
   const { t } = useT();
   const path = usePathname();
-  if (path?.startsWith("/booking")) return null;
+  // Only surface on the rooms listing + each room detail page — that's the
+  // moment the user is comparing rates and most likely to act.
+  if (!path?.startsWith("/rooms")) return null;
 
   return (
     <div

@@ -17,7 +17,8 @@ export function HomeBooking() {
         fill loading="lazy"
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-brand-900/92" />
+      {/* Stronger overlay so the body copy stays high-contrast against the photo */}
+      <div className="absolute inset-0 bg-brand-900/97" />
 
       <div className="relative container py-16 md:py-24 lg:py-32 text-snow">
         {/* Header */}
@@ -41,7 +42,7 @@ export function HomeBooking() {
           </div>
 
           <div className="lg:col-span-5 animate-fade-up" style={{ animationDelay: "150ms" }}>
-            <p className="text-snow/80 max-w-md leading-relaxed">{t.booking.lede}</p>
+            <p className="text-snow/95 max-w-md leading-relaxed">{t.booking.lede}</p>
           </div>
         </div>
 
@@ -62,7 +63,7 @@ export function HomeBooking() {
               <p className="mt-4 font-display text-xl text-snow" style={{ fontWeight: 600 }}>
                 {r.title}
               </p>
-              <p className="mt-1 text-sm text-snow/70 leading-relaxed">{r.body}</p>
+              <p className="mt-1 text-sm text-snow/90 leading-relaxed">{r.body}</p>
             </li>
           ))}
         </ul>

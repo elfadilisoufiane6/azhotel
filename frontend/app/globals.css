@@ -71,16 +71,19 @@
 
   /* ───── Small-Caps Subtitles ───── */
   .subtitle {
-    @apply inline-block text-brand-500 font-medium text-sm;
+    @apply inline-block text-brand-500 font-medium text-[11px] md:text-sm;
     font-variant: small-caps;
     font-feature-settings: "smcp", "c2sc";
-    letter-spacing: 0.32em;
+    letter-spacing: 0.28em;
   }
   .subtitle-light {
-    @apply inline-block text-brand-200 font-medium text-sm;
+    @apply inline-block text-brand-200 font-medium text-[11px] md:text-sm;
     font-variant: small-caps;
     font-feature-settings: "smcp", "c2sc";
-    letter-spacing: 0.32em;
+    letter-spacing: 0.28em;
+  }
+  @media (min-width: 768px) {
+    .subtitle, .subtitle-light { letter-spacing: 0.32em; }
   }
 
   /* Bold serif headlines */

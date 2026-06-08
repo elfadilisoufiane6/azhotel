@@ -75,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <I18nProvider>
           <StructuredData />
           <Header />
-          <main id="main" className="pb-[72px] lg:pb-0">{children}</main>
+          <main id="main">{children}</main>
           <Footer />
           <WhatsAppButton />
           <MobileBookingBar />

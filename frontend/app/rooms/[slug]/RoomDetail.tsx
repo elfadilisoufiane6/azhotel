@@ -90,6 +90,9 @@ export function RoomDetail({ room }: { room: Room }) {
           </aside>
         </div>
       </section>
+
+      {/* Spacer to clear the sticky mobile booking bar */}
+      <div className="h-[72px] lg:hidden" aria-hidden />
     </article>
   );
 }

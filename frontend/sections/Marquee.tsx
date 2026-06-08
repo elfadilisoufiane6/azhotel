@@ -13,8 +13,12 @@ export function Marquee() {
   return (
     <section id="discover" className="bg-snow py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="container mb-10 md:mb-12 text-center">
-        <span className="subtitle animate-fade-up">{t.marquee.eyebrow}</span>
-        <h2 className="section-title mt-5 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: "100ms" }}>
+        <span className="inline-flex items-center gap-3 subtitle reveal">
+          <span className="block h-px w-7 bg-brand-500/40" />
+          {t.marquee.eyebrow}
+          <span className="block h-px w-7 bg-brand-500/40" />
+        </span>
+        <h2 className="section-title mt-5 max-w-2xl mx-auto reveal" style={{ transitionDelay: "120ms" }}>
           {t.marquee.title1}<br />
           <em>{t.marquee.title2}</em>
         </h2>
@@ -28,7 +32,7 @@ export function Marquee() {
           {[...photos, ...photos].map((src, i) => (
             <div
               key={i}
-              className="relative shrink-0 w-[200px] sm:w-[280px] md:w-[360px] aspect-[3/4] overflow-hidden bg-bone"
+              className="group relative shrink-0 w-[200px] sm:w-[280px] md:w-[360px] aspect-[3/4] overflow-hidden bg-bone"
             >
               <Image
                 src={src}
@@ -36,9 +40,10 @@ export function Marquee() {
                 fill
                 loading="eager"
                 quality={68}
-                className="object-cover"
+                className="object-cover md:transition-transform md:duration-[1500ms] md:ease-out md:group-hover:scale-[1.06]"
                 sizes="(max-width: 640px) 200px, (max-width: 768px) 280px, 360px"
               />
+              <div className="absolute inset-0 bg-brand-900/0 md:group-hover:bg-brand-900/15 transition-colors duration-700" />
             </div>
           ))}
         </div>

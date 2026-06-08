@@ -3,6 +3,7 @@ import { Playfair_Display, Manrope, DM_Serif_Display } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileBookingBar } from "@/components/common/MobileBookingBar";
+import { ScrollObserver } from "@/components/common/ScrollObserver";
 import { StructuredData } from "@/components/common/StructuredData";
 import { I18nProvider } from "@/lib/i18n";
 import { site } from "@/lib/site";
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <I18nProvider>
           <StructuredData />
+          <ScrollObserver />
           <Header />
           <main id="main">{children}</main>
           <Footer />

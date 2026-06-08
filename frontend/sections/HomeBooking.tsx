@@ -44,13 +44,13 @@ export function HomeBooking() {
       {/* ── Booking form sits on white, just below the hero ── */}
       <div className="bg-snow">
         <div className="container py-10 md:py-16 lg:py-20">
-          <p className="text-ink/75 text-[14px] md:text-base max-w-2xl mx-auto text-center leading-relaxed animate-fade-up">
+          <p className="text-ink/75 text-[14px] md:text-base max-w-2xl mx-auto text-center leading-relaxed reveal">
             {t.booking.lede}
           </p>
 
           <div
-            className="mt-8 md:mt-10 max-w-5xl mx-auto bg-snow border border-brand-100 shadow-luxe animate-fade-up"
-            style={{ animationDelay: "150ms" }}
+            className="mt-8 md:mt-10 max-w-5xl mx-auto bg-snow border border-brand-100 shadow-luxe reveal"
+            style={{ transitionDelay: "150ms" }}
           >
             <BookingForm variant="inline" />
           </div>
@@ -60,8 +60,8 @@ export function HomeBooking() {
             {t.booking.reassure.map((r, i) => (
               <li
                 key={r.title}
-                className="animate-fade-up"
-                style={{ animationDelay: `${300 + i * 80}ms` }}
+                className="reveal"
+                style={{ transitionDelay: `${i * 100}ms` }}
               >
                 <CheckCircle2 className="size-5 text-brand-500" />
                 <p className="mt-4 font-display text-xl text-ink" style={{ fontWeight: 600 }}>

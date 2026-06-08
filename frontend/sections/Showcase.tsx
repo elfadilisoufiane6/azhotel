@@ -33,14 +33,14 @@ export function Showcase({
   variant?: "dark" | "light";
 }) {
   return (
-    <section id={id} className="relative min-h-[72svh] md:min-h-[100svh] overflow-hidden bg-brand-900">
+    <section id={id} className="group/section relative min-h-[72svh] md:min-h-[100svh] overflow-hidden bg-brand-900">
       <div className="absolute inset-0">
         <ResponsiveImage
           desktop={desktop}
           mobile={mobile}
           alt=""
           fill loading="lazy"
-          className="object-cover"
+          className="object-cover scale-105 animate-ken-burns md:group-hover/section:scale-110 transition-transform duration-[1500ms] ease-out"
         />
       </div>
       <div className={`absolute inset-0 ${variant === "dark" ? "bg-brand-900/55" : "bg-brand-900/30"}`} />
@@ -48,20 +48,20 @@ export function Showcase({
       <div className="relative container min-h-[72svh] md:min-h-[100svh] flex items-center py-20 md:py-32">
         <div className={`max-w-2xl ${align === "right" ? "md:ml-auto md:text-right" : ""}`}>
           <span
-            className={`inline-flex items-center gap-3 subtitle-light animate-fade-up ${align === "right" ? "md:flex-row-reverse" : ""}`}
+            className={`inline-flex items-center gap-3 subtitle-light reveal ${align === "right" ? "md:flex-row-reverse" : ""}`}
           >
             <span className="block h-px w-7 bg-brand-200/70" />
             {eyebrow}
           </span>
 
           <h2
-            className="mt-5 md:mt-6 font-display text-snow animate-fade-up"
+            className="mt-5 md:mt-6 font-display text-snow reveal"
             style={{
               fontWeight: 500,
               fontSize: "clamp(2.25rem, 7vw, 5.75rem)",
               lineHeight: 1.02,
               letterSpacing: "-0.025em",
-              animationDelay: "120ms",
+              transitionDelay: "120ms",
             }}
           >
             {title1}
@@ -72,15 +72,15 @@ export function Showcase({
           </h2>
 
           <p
-            className="mt-4 md:mt-8 max-w-md text-snow/85 leading-relaxed text-[13px] md:text-base animate-fade-up"
-            style={{ animationDelay: "240ms" }}
+            className="mt-4 md:mt-8 max-w-md text-snow/85 leading-relaxed text-[13px] md:text-base reveal"
+            style={{ transitionDelay: "260ms" }}
           >
             {body}
           </p>
 
           <div
-            className={`mt-8 md:mt-10 inline-flex animate-fade-up ${align === "right" ? "md:ml-auto" : ""}`}
-            style={{ animationDelay: "360ms" }}
+            className={`mt-8 md:mt-10 inline-flex reveal ${align === "right" ? "md:ml-auto" : ""}`}
+            style={{ transitionDelay: "400ms" }}
           >
             <Link
               href={href}

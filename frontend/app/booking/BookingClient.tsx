@@ -69,27 +69,17 @@ export function BookingClient() {
         </div>
       </section>
 
-      {/* Contact + Languages */}
-      <section className="relative overflow-hidden">
-        <ResponsiveImage
-          desktop="/images/pages/booking-contact/main.jpg"
-          mobile="/images/pages/booking-contact/mobile.jpg"
-          alt=""
-          fill loading="lazy" quality={75}
-          className="object-cover"
-        />
-        {/* Heavier overlay so contact info stays high-contrast on every photo */}
-        <div className="absolute inset-0 bg-brand-900/97" />
-
-        <div className="relative container py-16 md:py-24 lg:py-32 text-snow">
+      {/* Contact + Languages — light theme for maximum readability */}
+      <section className="relative bg-snow border-t border-brand-100">
+        <div className="container py-16 md:py-24 lg:py-32 text-ink">
           <div className="grid lg:grid-cols-12 gap-10 md:gap-12">
             <FadeUp className="lg:col-span-7">
-              <span className="subtitle-light">{site.phone}</span>
-              <h3 className="mt-5 font-display text-snow"
+              <span className="subtitle">{site.phone}</span>
+              <h3 className="mt-5 font-display text-ink"
                   style={{ fontWeight: 700, fontSize: "clamp(2rem, 4.2vw, 3.5rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
               >
                 {t.booking.contactTitle1}{" "}
-                <em className="text-brand-200" style={{ fontFamily: "var(--font-editorial)", fontWeight: 400 }}>{t.booking.contactTitle2}</em>
+                <em className="text-brand-500" style={{ fontFamily: "var(--font-editorial)", fontWeight: 400 }}>{t.booking.contactTitle2}</em>
               </h3>
 
               <ul className="mt-8 md:mt-10 grid sm:grid-cols-2 gap-y-5 md:gap-y-6 gap-x-8 max-w-2xl">
@@ -100,26 +90,26 @@ export function BookingClient() {
               </ul>
             </FadeUp>
 
-            <FadeUp delay={0.15} className="lg:col-span-5 lg:border-l lg:border-snow/15 lg:pl-12">
-              <span className="subtitle-light">{t.common.languagesSpoken}</span>
-              <h3 className="mt-5 font-display text-snow"
+            <FadeUp delay={0.15} className="lg:col-span-5 lg:border-l lg:border-brand-100 lg:pl-12">
+              <span className="subtitle">{t.common.languagesSpoken}</span>
+              <h3 className="mt-5 font-display text-ink"
                   style={{ fontWeight: 700, fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
               >
                 {t.booking.langTitle1}{" "}
-                <em className="text-brand-200" style={{ fontFamily: "var(--font-editorial)", fontWeight: 400 }}>{t.booking.langTitle2}</em>
+                <em className="text-brand-500" style={{ fontFamily: "var(--font-editorial)", fontWeight: 400 }}>{t.booking.langTitle2}</em>
               </h3>
 
               <ul className="mt-8 space-y-4">
                 {site.languages.map((l) => (
-                  <li key={l.code} className="flex items-center gap-4 text-snow">
+                  <li key={l.code} className="flex items-center gap-4 text-ink">
                     <Image src={l.flag} alt={l.code} width={36} height={24} className="rounded-sm shadow-sm" />
-                    <span className="font-display text-xl">{l.label}</span>
+                    <span className="font-display text-xl" style={{ fontWeight: 500 }}>{l.label}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-10 flex items-center gap-3 text-snow/90 text-sm">
-                <Clock className="size-4 text-brand-200" />
+              <div className="mt-10 flex items-center gap-3 text-ink/75 text-sm">
+                <Clock className="size-4 text-brand-500" />
                 <span>{t.booking.reception24}</span>
               </div>
             </FadeUp>
@@ -135,19 +125,19 @@ function ContactItem({
 }: { icon: typeof Phone; label: string; value: string; href?: string }) {
   const inner = (
     <>
-      <span className="size-11 border border-snow/50 text-brand-200 flex items-center justify-center shrink-0 transition-colors group-hover:border-brand-200 group-hover:bg-snow group-hover:text-brand-700">
+      <span className="size-11 border border-brand-200 text-brand-500 flex items-center justify-center shrink-0 transition-colors group-hover:border-brand-500 group-hover:bg-brand-500 group-hover:text-snow">
         <Icon className="size-4" />
       </span>
       <div className="min-w-0">
-        <p className="text-[10px] smallcaps tracking-[0.28em] text-brand-200 font-medium">{label}</p>
-        <p className="mt-1 font-display text-lg text-snow break-words" style={{ fontWeight: 600 }}>{value}</p>
+        <p className="text-[10px] smallcaps tracking-[0.28em] text-brand-500 font-semibold">{label}</p>
+        <p className="mt-1 font-display text-lg text-ink break-words" style={{ fontWeight: 600 }}>{value}</p>
       </div>
     </>
   );
   return (
     <li>
       {href ? (
-        <a href={href} className="group flex items-center gap-4 hover:text-brand-200 transition-colors">{inner}</a>
+        <a href={href} className="group flex items-center gap-4 hover:text-brand-500 transition-colors">{inner}</a>
       ) : (
         <div className="group flex items-center gap-4">{inner}</div>
       )}

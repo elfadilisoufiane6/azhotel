@@ -28,6 +28,11 @@ const nextConfig = {
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          // One-shot cache wipe: as soon as a visitor hits any URL on this
+          // origin the browser dumps its image / asset cache from the prior
+          // immutable-cached era. Remove after a deploy or two once everyone
+          // is on the empty shell.
+          { key: "Clear-Site-Data", value: '"cache"' },
         ],
       },
       // Hashed Next build output (_next/static/*) is already served as

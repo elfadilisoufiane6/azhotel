@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
-import { site } from "@/lib/site";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useT } from "@/lib/i18n";
 import { LanguageSwitcher } from "@/components/common/LanguageSwitcher";
@@ -54,41 +52,18 @@ export function Header() {
         transparent ? "bg-transparent" : "bg-snow border-b border-brand-100 shadow-sm",
       )}
     >
-      {/* Utility strip — phone + flags, fades on scroll */}
-      <div
-        className={cn(
-          "border-b border-snow/15 text-snow text-xs transition-all duration-300 overflow-hidden smallcaps tracking-[0.32em]",
-          transparent ? "max-h-10 opacity-100" : "max-h-0 opacity-0",
-        )}
-      >
-        <div className="container h-10 flex items-center justify-between">
-          <a href={`tel:${site.phoneTel}`} className="flex items-center gap-2 hover:text-brand-200 transition-colors">
-            <Phone className="size-3" />
-            {site.phone}
-          </a>
-          <div className="hidden sm:flex items-center gap-2 text-snow/70">
-            <span>{t.common.weSpeak}</span>
-            {site.languages.map((l) => (
-              <Image key={l.code} src={l.flag} alt={l.code} width={20} height={14} className="rounded-[2px] shadow-sm" />
-            ))}
-          </div>
-        </div>
-      </div>
-
       <div className="container flex items-center justify-between h-20 lg:h-24">
-        {/* Logo */}
-        <Link href="/" aria-label="AZ Hôtel des Arts" className="flex items-center gap-3 shrink-0">
-          <Image
-            src="/brand/logo.svg"
-            alt={site.name}
-            width={200}
-            height={56}
-            priority
-            className={cn(
-              "h-9 lg:h-11 w-auto transition-[filter] duration-500",
-              transparent ? "brightness-0 invert" : ""
-            )}
-          />
+        {/* Logo slot — bare wordmark placeholder until a new brand is added */}
+        <Link
+          href="/"
+          aria-label="Home"
+          className={cn(
+            "flex items-center shrink-0 font-display text-lg tracking-[0.05em] transition-colors duration-300",
+            transparent ? "text-snow" : "text-ink",
+          )}
+          style={{ fontWeight: 600 }}
+        >
+          {/* Drop your wordmark / SVG logo here */}
         </Link>
 
         {/* Centre nav */}
@@ -217,13 +192,6 @@ export function Header() {
             >
               {t.common.checkAvail}
             </Link>
-            <a
-              href={`tel:${site.phoneTel}`}
-              className="flex items-center justify-center gap-3 text-ink/75 hover:text-brand-500 transition-colors text-sm"
-            >
-              <Phone className="size-4 text-brand-500" />
-              {site.phone}
-            </a>
           </div>
         </nav>
       </div>

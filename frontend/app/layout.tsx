@@ -4,9 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileBookingBar } from "@/components/common/MobileBookingBar";
 import { ScrollObserver } from "@/components/common/ScrollObserver";
-import { StructuredData } from "@/components/common/StructuredData";
 import { I18nProvider } from "@/lib/i18n";
-import { site } from "@/lib/site";
 import "./globals.css";
 
 const display = Playfair_Display({
@@ -36,27 +34,12 @@ const sans = Manrope({
   preload: true,
 });
 
+// Brand metadata cleared — fill these back when the new identity is in place.
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} — Boutique Luxury Hotel in Rabat`,
-    template: `%s · ${site.name}`,
-  },
-  description: site.description,
-  applicationName: site.name,
-  manifest: "/manifest.webmanifest",
+  title: { default: "", template: "%s" },
+  description: "",
   icons: { icon: [{ url: "/favicon.svg", type: "image/svg+xml" }] },
-  openGraph: {
-    type: "website",
-    url: site.url,
-    siteName: site.name,
-    title: site.name,
-    description: site.description,
-    images: [{ url: "/og-image.svg", width: 1200, height: 630, alt: site.name }],
-  },
-  twitter: { card: "summary_large_image", title: site.name, description: site.description, images: ["/og-image.svg"] },
-  alternates: { canonical: site.url },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
@@ -73,7 +56,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr" className={`${display.variable} ${editorial.variable} ${sans.variable}`}>
       <body>
         <I18nProvider>
-          <StructuredData />
           <ScrollObserver />
           <Header />
           <main id="main">{children}</main>
